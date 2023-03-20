@@ -1,6 +1,5 @@
 
 import Controller.Application;
-import View.LoginFrame;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license

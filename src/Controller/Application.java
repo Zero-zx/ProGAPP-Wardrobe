@@ -5,20 +5,18 @@
 package Controller;
 
 import Model.Outfit;
-import View.LoginFrame;
+import View.SigninJFrame;
 
 /**
  *
  * @author dthie
  */
 public class Application {
-    LoginFrame loginFrame;
+    SigninJFrame loginFrame;
     
     public void run(){
-        
-        Outfit outf = new Outfit("male1", "Assets/Images/Male_1.png", "Male");
-        loginFrame = new LoginFrame();
-        loginFrame.addOutFit(outf);
+        loginFrame = new SigninJFrame();
         loginFrame.setVisible(true);
+        
     }
 }
