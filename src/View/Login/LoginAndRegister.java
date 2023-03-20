@@ -7,7 +7,7 @@ package View.Login;
 import net.miginfocom.swing.MigLayout;
 public class LoginAndRegister extends javax.swing.JPanel {
 
-    private Mig
+    private MigLayout
     public LoginAndRegister() {
         initComponents();
     }
