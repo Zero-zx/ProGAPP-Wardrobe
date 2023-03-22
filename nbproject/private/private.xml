@@ -5,13 +5,14 @@
         <group>
             <file>file:/E:/Study/ProPTIT/Java/ProGApp/Virtual_Wardrobe/ProGAPP-Wardrobe/src/View/Login/Login.java</file>
             <file>file:/E:/Study/ProPTIT/Java/ProGApp/Virtual_Wardrobe/ProGAPP-Wardrobe/src/Controller/IoBinary.java</file>
+            <file>file:/E:/Study/ProPTIT/Java/ProGApp/Virtual_Wardrobe/ProGAPP-Wardrobe/src/View/Swing/EventLogin.java</file>
             <file>file:/E:/Study/ProPTIT/Java/ProGApp/Virtual_Wardrobe/ProGAPP-Wardrobe/src/Controller/Application.java</file>
-            <file>file:/E:/Study/ProPTIT/Java/ProGApp/Virtual_Wardrobe/ProGAPP-Wardrobe/src/main.java</file>
-            <file>file:/E:/Study/ProPTIT/Java/ProGApp/Virtual_Wardrobe/ProGAPP-Wardrobe/src/View/Swing/Password.java</file>
+            <file>file:/E:/Study/ProPTIT/Java/ProGApp/Virtual_Wardrobe/ProGAPP-Wardrobe/src/View/MainFrame/CustomeBorder.java</file>
+            <file>file:/E:/Study/ProPTIT/Java/ProGApp/Virtual_Wardrobe/ProGAPP-Wardrobe/src/View/MainFrame/Home.java</file>
             <file>file:/E:/Study/ProPTIT/Java/ProGApp/Virtual_Wardrobe/ProGAPP-Wardrobe/src/View/Login/PanelCustom.java</file>
-            <file>file:/E:/Study/ProPTIT/Java/ProGApp/Virtual_Wardrobe/ProGAPP-Wardrobe/src/View/Login/LoginAndRegister.java</file>
-            <file>file:/E:/Study/ProPTIT/Java/ProGApp/Virtual_Wardrobe/ProGAPP-Wardrobe/src/View/SigninJFrame.java</file>
             <file>file:/E:/Study/ProPTIT/Java/ProGApp/Virtual_Wardrobe/ProGAPP-Wardrobe/src/View/Swing/TextField.java</file>
+            <file>file:/E:/Study/ProPTIT/Java/ProGApp/Virtual_Wardrobe/ProGAPP-Wardrobe/src/View/MainFrame/LoginAndRegisterFrame.java</file>
+            <file>file:/E:/Study/ProPTIT/Java/ProGApp/Virtual_Wardrobe/ProGAPP-Wardrobe/src/View/Login/LoginAndRegister.java</file>
             <file>file:/E:/Study/ProPTIT/Java/ProGApp/Virtual_Wardrobe/ProGAPP-Wardrobe/src/View/Login/Register.java</file>
         </group>
     </open-files>
