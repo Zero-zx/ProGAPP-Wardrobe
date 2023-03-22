@@ -1,9 +1,9 @@
 package View.Login;
 
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.*;
-import javax.swing.text.StyleConstants;
 public class PanelCustom extends JComponent{
     
     public PanelCustom(){
@@ -18,5 +18,25 @@ public class PanelCustom extends JComponent{
         g2.fill(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 10, 10));
         g2.dispose();
         super.paintComponent(grphics);
+    }
+    
+    private float alpha;
+
+    public float getAlpha() {
+        return alpha;
+    }
+
+    public void setAlpha(float alpha) {
+        this.alpha = alpha;
+    }
+    
+    @Override
+    public void paint(Graphics grphc){
+        super.paint(grphc);
+        Graphics2D g2 = (Graphics2D) grphc.create();
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha * 0.8f));
+        g2.setColor(LoginAndRegister.mainColor);
+        g2.fill(new Rectangle2D.Double(0, 0, getWidth(), getHeight()));
+        g2.dispose();
     }
 }

@@ -5,17 +5,18 @@
 package Controller;
 
 import Model.Outfit;
-import View.SigninJFrame;
+import View.MainFrame.LoginAndRegisterFrame;
+import View.MainFrame.LoginAndRegisterFrame;
 
 /**
  *
  * @author dthie
  */
 public class Application {
-    SigninJFrame loginFrame;
+    LoginAndRegisterFrame loginFrame;
     
     public void run(){
-        loginFrame = new SigninJFrame();
+        loginFrame = new LoginAndRegisterFrame();
         loginFrame.setVisible(true);
         
     }

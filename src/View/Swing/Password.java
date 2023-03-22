@@ -34,7 +34,7 @@ public class Password extends JPasswordField{
 
     public Password() {
         setBorder(new EmptyBorder(10,10,10,10));
-        setBackground(new Color(0,0,0,0));
+        //setBackground(new Color(0,0,0,0));
         setHorizontalAlignment(JTextField.CENTER);
         setSelectionColor(LoginAndRegister.mainColor);
     }
