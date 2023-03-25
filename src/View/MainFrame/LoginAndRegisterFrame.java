@@ -5,12 +5,6 @@
 package View.MainFrame;
 
 import View.Swing.EventLogin;
-import java.awt.Color;
-import java.awt.Insets;
-import javax.swing.BorderFactory;
-import javax.swing.UIManager;
-import javax.swing.border.EmptyBorder;
-import View.MainFrame.Home;
 
 /**
  *
@@ -18,11 +12,12 @@ import View.MainFrame.Home;
  */
 public class LoginAndRegisterFrame extends javax.swing.JFrame {
 
-    private Home home;
+    private MainFrame mainFrame;
+    private HomeFrame home;
     
     public LoginAndRegisterFrame() {
         initComponents();
-        home = new Home();
+        home = new HomeFrame();
         EventLogin event = new EventLogin(){
             @Override
             public void loginDone(){
@@ -32,10 +27,16 @@ public class LoginAndRegisterFrame extends javax.swing.JFrame {
                 main.repaint();
             }
                 
+            @Override
             public void logOut(){
+                main.removeAll();
+                main.add(loginAndRegister1);
+                main.revalidate();
+                main.repaint();
             }
         };
         loginAndRegister1.setEventLogin(event);
+     
     }
 
     /**

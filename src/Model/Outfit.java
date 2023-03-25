@@ -9,23 +9,25 @@ package Model;
  * @author dthie
  */
 public class Outfit {
-    private String name, filePath, tag;
+    public String ShirtPath = "src/Assets/Shirt/";
+    public String DressPath = "src/Assets/Dress/";
+    public String PantPath = "src/Assets/Pant/";
+    public String ShoePath = "src/Assets/Shoe/";
 
-    public Outfit(String name, String filePath, String tag) {
-        this.name = name;
+
+    private String defaultPath = "src/Assets/";
+    private String filePath, tag;
+    //private int Sw = 497, Sh = 480;
+    public Outfit(String filePath, String tag) {
         this.filePath = filePath;
         this.tag = tag;
     }
 
+    public String getDefaultPath() {
+        return defaultPath;
+    }
+
     public Outfit() {
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getFilePath() {

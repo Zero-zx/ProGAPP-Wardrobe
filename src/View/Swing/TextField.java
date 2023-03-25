@@ -24,15 +24,11 @@ public class TextField extends JTextField {
 
     public TextField() {
         setBorder(new EmptyBorder(10, 10, 10, 10));
-        //setBackground(new Color(0, 0, 0, 0));
+        setBackground(new Color(0, 0, 0, 0));
         setHorizontalAlignment(JTextField.CENTER);
         setSelectionColor(LoginAndRegister.mainColor);
     }
 
-    /**
-     *
-     * @param grphcs
-     */
     @Override
     protected void paintComponent(Graphics grphcs) {
         Graphics2D g2 = (Graphics2D) grphcs.create();

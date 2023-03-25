@@ -19,6 +19,7 @@ public class Login extends PanelCustom {
     
     public Login() {
         initComponents();
+        setAlpha(1);
     }
     
     public void setEventLogin(EventLogin event){
@@ -34,24 +35,12 @@ public class Login extends PanelCustom {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        textField3 = new View.Swing.TextField();
-        password1 = new View.Swing.Password();
         jTextField1 = new javax.swing.JTextField();
         button1 = new View.Swing.Button();
+        textField3 = new View.Swing.TextField();
+        password1 = new View.Swing.Password();
 
         setBackground(new java.awt.Color(235, 235, 235));
-
-        textField3.setBackground(new java.awt.Color(235, 235, 235));
-        textField3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(25, 25, 25), 1, true));
-        textField3.setForeground(new java.awt.Color(40, 40, 40));
-        textField3.setText("USER NAME");
-        textField3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        textField3.setHint("NAME");
-
-        password1.setBackground(new java.awt.Color(235, 235, 235));
-        password1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(25, 25, 25)));
-        password1.setForeground(new java.awt.Color(40, 40, 40));
-        password1.setText("PASSafggagagw");
 
         jTextField1.setBackground(new java.awt.Color(235, 235, 235));
         jTextField1.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
@@ -75,31 +64,43 @@ public class Login extends PanelCustom {
             }
         });
 
+        textField3.setForeground(new java.awt.Color(25, 25, 25));
+        textField3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        textField3.setHint("USER NAME");
+        textField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textField3ActionPerformed(evt);
+            }
+        });
+
+        password1.setForeground(new java.awt.Color(26, 26, 26));
+        password1.setHint("PASSWORD");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(textField3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(button1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1)
-                    .addComponent(password1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textField3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))
-                .addGap(30, 30, 30))
+                    .addComponent(password1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addComponent(jTextField1)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addComponent(textField3, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                .addComponent(textField3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(password1, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addComponent(password1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(40, 40, 40)
                 .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53))
+                .addGap(87, 87, 87))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -107,9 +108,15 @@ public class Login extends PanelCustom {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void textField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textField3ActionPerformed
+
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         // TODO add your handling code here:
-        event.loginDone();
+        if (getAlpha() == 0) {
+            event.loginDone();
+        }
     }//GEN-LAST:event_button1ActionPerformed
 
 
