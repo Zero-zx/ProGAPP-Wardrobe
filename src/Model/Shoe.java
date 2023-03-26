@@ -8,9 +8,9 @@ package Model;
  *
  * @author dthie
  */
-public class Dress extends Outfit{
-    private String finalPath = "/Dress";
-    public Dress(String filePath, String tag) {
+public class Shoe extends Outfit{
+    private String finalPath = "/Shoe";
+    public Shoe(String filePath, String tag) {
         super(filePath, tag);
     }
 }

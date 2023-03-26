@@ -9,5 +9,8 @@ package Model;
  * @author dthie
  */
 public class Pant extends Outfit{
-    
+    private String finalPath = "/Shirt";
+    public Pant(String filePath, String tag) {
+        super(filePath, tag);
+    }
 }

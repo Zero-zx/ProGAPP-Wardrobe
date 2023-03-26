@@ -5,15 +5,21 @@
 package View.MainFrame;
 
 import Model.Outfit;
+import Model.Pant;
 import Model.Shirt;
+import Model.Shoe;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import net.miginfocom.swing.MigLayout;
 
 
 /**
@@ -40,11 +46,38 @@ public class HomeFrame extends javax.swing.JPanel {
         addDressList(outfit);
         addShoeList(outfit);
         generateList();
+        BufferedImage image = null;
+        try {
+            image = ImageIO.read(new File("src/Assets/Model/Male.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //createLabelIcon("src/Assets/Model/Male.png", jLabel1);
+        Background.setIcon(new ImageIcon(image));
+        //jLabel2.setIcon(new ImageIcon("src/Assets/Shirt/Shirt_1.png"));
+        //jLabel1.setPreferredSize(new Dimension(400,534));
+        //System.out.println(jLabel1.getIcon().getIconHeight() + " " + jLabel1.getIcon().getIconWidth());
     }
     
     private JButton addNewButton(Outfit of){
         JButton btn = new JButton(of.getTag());
         btn.setPreferredSize(new Dimension(90,100));
+        BufferedImage image = null;
+        try {
+            image = ImageIO.read(new File(of.getFilePath()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ImageIcon img = new ImageIcon(image);
+        btn.addActionListener((ActionEvent e) -> {
+             if("Shirt".equals(of.getTag())){
+                Top.setIcon(img);
+             }else if("Pant".equals(of.getTag())){
+                Down.setIcon(img);
+             }else if("Shoe".equals(of.getTag())){
+                Below.setIcon(img);
+             }
+        });
         return btn;
     }
     
@@ -70,17 +103,18 @@ public class HomeFrame extends javax.swing.JPanel {
     }
     
     private void addShirtList(ArrayList<Outfit> list){
-        Shirt shirt = new Shirt(oft.ShirtPath + "Shirt_1.png", "Shirt");
-        list.add(shirt);
-        for(Outfit it : list){
-            System.out.println(it.getFilePath());
+        Shirt shirt;
+        for(int i = 1; i <= 3; i++){
+            shirt = new Shirt(oft.ShirtPath + "Shirt_" + String.valueOf(i) + ".png", "Shirt");
+            list.add(shirt);
         }
+
     }
     private void addPantList(ArrayList<Outfit> list){
-        Shirt shirt = new Shirt(oft.PantPath + "Pant_1.png", "Pant");
-        list.add(shirt);
-        for(Outfit it : list){
-            System.out.println(it.getFilePath());
+        Pant pant;
+        for(int i = 1; i <= 2; i++){
+            pant = new Pant(oft.PantPath + "Pant_" + String.valueOf(i) + ".png", "Pant");
+            list.add(pant);
         }
     }
     private void addDressList(ArrayList<Outfit> list){
@@ -92,20 +126,31 @@ public class HomeFrame extends javax.swing.JPanel {
     }
     
     private void addShoeList(ArrayList<Outfit> list){
-        Shirt shirt = new Shirt(oft.ShoePath + "Shoe_1.png", "Shoe");
-        list.add(shirt);
-        for(Outfit it : list){
-            System.out.println(it.getFilePath());
+        Shoe shoe;
+        for(int i = 1; i <= 1; i++){
+            shoe = new Shoe(oft.ShoePath + "Shoe_" + String.valueOf(i) + ".png", "Shoe");
+            list.add(shoe);
         }
     }
 
     
-    public void createIcon(String fileName, JLabel label){
+    public void createLabelIcon(String fileName, JLabel label){
         try{
         ImageIcon i = new ImageIcon(fileName);
-        Image image = i.getImage().getScaledInstance(130, 448, Image.SCALE_SMOOTH);
+        Image image = i.getImage().getScaledInstance(label.getWidth(), label.getWidth(), Image.SCALE_SMOOTH);
             
-        //jLabel1.setIcon(new ImageIcon(image));
+        label.setIcon(new ImageIcon(image));
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    
+    public void createButtonIcon(String fileName, JButton label){
+        try{
+        ImageIcon i = new ImageIcon(fileName);
+        Image image = i.getImage().getScaledInstance(label.getWidth(), label.getWidth(), Image.SCALE_SMOOTH);
+            
+        label.setIcon(new ImageIcon(image));
         }catch(Exception ex){
             ex.printStackTrace();
         }
@@ -143,6 +188,10 @@ public class HomeFrame extends javax.swing.JPanel {
         card4 = new javax.swing.JPanel();
         card5 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        Top = new javax.swing.JLabel();
+        Down = new javax.swing.JLabel();
+        Below = new javax.swing.JLabel();
+        Background = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(153, 204, 255));
 
@@ -226,29 +275,42 @@ public class HomeFrame extends javax.swing.JPanel {
         );
         card5Layout.setVerticalGroup(
             card5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 631, Short.MAX_VALUE)
+            .addGap(0, 586, Short.MAX_VALUE)
         );
 
         CLpanel.add(card5, "card6");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 710, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        jPanel2.setLayout(new javax.swing.OverlayLayout(jPanel2));
+
+        Top.setText("jLabel1");
+        Top.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Top.setMaximumSize(new java.awt.Dimension(400, 534));
+        Top.setMinimumSize(new java.awt.Dimension(400, 534));
+        Top.setPreferredSize(new java.awt.Dimension(400, 534));
+        jPanel2.add(Top);
+
+        Down.setText("jLabel2");
+        Down.setMaximumSize(new java.awt.Dimension(400, 534));
+        Down.setName(""); // NOI18N
+        jPanel2.add(Down);
+
+        Below.setText("jLabel4");
+        Below.setMaximumSize(new java.awt.Dimension(400, 543));
+        jPanel2.add(Below);
+
+        Background.setText("jLabel3");
+        Background.setMaximumSize(new java.awt.Dimension(400, 534));
+        Background.setPreferredSize(new java.awt.Dimension(400, 534));
+        jPanel2.add(Background);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap(138, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(CLpanel, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -256,9 +318,14 @@ public class HomeFrame extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(CLpanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(CLpanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
+
+        jPanel2.getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -284,7 +351,11 @@ public class HomeFrame extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Background;
+    private javax.swing.JLabel Below;
     private javax.swing.JPanel CLpanel;
+    private javax.swing.JLabel Down;
+    private javax.swing.JLabel Top;
     private javax.swing.JPanel card1;
     private javax.swing.JPanel card2;
     private javax.swing.JPanel card3;

@@ -4,6 +4,8 @@
  */
 package Model;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author dthie
@@ -14,10 +16,7 @@ public class Shirt extends Outfit{
         super(filePath, tag);
     }
 
-    @Override
-    public String toString() {
-        return super.getDefaultPath() + finalPath;
-    }
+    
     
     
     
