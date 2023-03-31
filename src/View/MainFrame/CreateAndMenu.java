@@ -4,6 +4,7 @@
  */
 package View.MainFrame;
 
+import static View.Login.LoginAndRegister.mainColor;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -22,12 +23,16 @@ public class CreateAndMenu extends javax.swing.JPanel {
     }
         
     private void init(){
+        setBackground(mainColor);
+
         layout = new MigLayout("fill", "fill", "fill");
         this.setLayout(layout);
         creating = new Creating();
         scr = new ScrollPane();
-        add(creating, "pos (0%) 0.5al n n");
-        add(scr, "pos (70%) 0.5al n n");
+        add(scr, "pos 80% 0.5al");
+
+        add(creating, "pos 0% 0.5al");
+        
     }
 
     /**

@@ -8,8 +8,11 @@ import Model.Outfit;
 import Model.Pant;
 import Model.Shirt;
 import Model.Shoe;
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
@@ -20,6 +23,8 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 
 /**
@@ -52,15 +57,16 @@ public class HomeFrame extends javax.swing.JPanel {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //createLabelIcon("src/Assets/Model/Male.png", jLabel1);
         Background.setIcon(new ImageIcon(image));
-        //jLabel2.setIcon(new ImageIcon("src/Assets/Shirt/Shirt_1.png"));
-        //jLabel1.setPreferredSize(new Dimension(400,534));
-        //System.out.println(jLabel1.getIcon().getIconHeight() + " " + jLabel1.getIcon().getIconWidth());
+        //createScrollPane();
+
     }
     
-    private JButton addNewButton(Outfit of){
+    private JPanel addNewButton(Outfit of){
         JButton btn = new JButton(of.getTag());
+        JPanel pnl = new JPanel();
+        pnl.setBackground(new Color(0,0,0,0));
+        pnl.setPreferredSize(new Dimension(90, 100));
         btn.setPreferredSize(new Dimension(90,100));
         BufferedImage image = null;
         try {
@@ -78,7 +84,8 @@ public class HomeFrame extends javax.swing.JPanel {
                 Below.setIcon(img);
              }
         });
-        return btn;
+        pnl.add(btn);
+        return pnl;
     }
     
     private void generateList(){
@@ -156,16 +163,16 @@ public class HomeFrame extends javax.swing.JPanel {
         }
     }
     
-//    void createScrollPane(){
-//         JScrollPane scrollPane = new JScrollPane(jPanel2);
-//        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-//        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-//        scrollPane.setBounds(50, 30, 50, 30);
-//        scrollPane.getVerticalScrollBar().setUnitIncrement(13);
+    void createScrollPane(){
+        JScrollPane scrollPane = new JScrollPane(card1);
+        scrollPane.setPreferredSize(new Dimension(170,600));
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        CLpanel.add(scrollPane, new GridLayout());
+        scrollPane.getVerticalScrollBar().setUnitIncrement(13);
 //        JPanel contentPane = new JPanel(null);
-//        contentPane.setPreferredSize(new Dimension(500, 400));
-//        //getContentPane().add(scrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 0, 240, 620));
-//    }
+//        contentPane.setPreferredSize(new Dimension(170, 600));
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -177,49 +184,66 @@ public class HomeFrame extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        button1 = new View.Swing.Button();
+        button2 = new View.Swing.Button();
+        button3 = new View.Swing.Button();
+        button4 = new View.Swing.Button();
         CLpanel = new javax.swing.JPanel();
-        card1 = new javax.swing.JPanel();
-        card2 = new javax.swing.JPanel();
         card3 = new javax.swing.JPanel();
         card4 = new javax.swing.JPanel();
         card5 = new javax.swing.JPanel();
+        ShirtPanel = new javax.swing.JScrollPane();
+        card1 = new javax.swing.JPanel();
+        PantPanel = new javax.swing.JScrollPane();
+        card2 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         Top = new javax.swing.JLabel();
         Down = new javax.swing.JLabel();
         Below = new javax.swing.JLabel();
         Background = new javax.swing.JLabel();
 
-        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
+        setBackground(new java.awt.Color(246, 207, 104));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMaximumSize(new java.awt.Dimension(930, 586));
+        setMinimumSize(new java.awt.Dimension(930, 586));
+        setName(""); // NOI18N
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Shirt");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+
+        button1.setBackground(new java.awt.Color(73, 73, 73));
+        button1.setForeground(new java.awt.Color(255, 255, 255));
+        button1.setText("Shirt");
+        button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                button1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Pant");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        button2.setBackground(new java.awt.Color(73, 73, 73));
+        button2.setForeground(new java.awt.Color(255, 255, 255));
+        button2.setText("Pant");
+        button2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                button2ActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Dress");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        button3.setBackground(new java.awt.Color(73, 73, 73));
+        button3.setForeground(new java.awt.Color(255, 255, 255));
+        button3.setText("Dress");
+        button3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                button3ActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Shoe");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        button4.setBackground(new java.awt.Color(73, 73, 73));
+        button4.setForeground(new java.awt.Color(255, 255, 255));
+        button4.setText("Shoes");
+        button4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                button4ActionPerformed(evt);
             }
         });
 
@@ -228,126 +252,103 @@ public class HomeFrame extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(button3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(button1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(button2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(button4, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73)
+                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(100, 100, 100)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(100, 100, 100)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(100, 100, 100)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(85, 85, 85))
         );
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, 150, 600));
 
         CLpanel.setLayout(new java.awt.CardLayout());
 
-        card1.setBackground(new java.awt.Color(0, 153, 153));
-        card1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        CLpanel.add(card1, "card2");
-
-        card2.setBackground(new java.awt.Color(0, 102, 153));
-        CLpanel.add(card2, "card3");
-
-        card3.setBackground(new java.awt.Color(255, 204, 204));
+        card3.setBackground(new java.awt.Color(73, 73, 73));
+        card3.setLayout(new java.awt.GridLayout(0, 1));
         CLpanel.add(card3, "card4");
 
-        card4.setBackground(new java.awt.Color(255, 255, 204));
+        card4.setBackground(new java.awt.Color(73, 73, 73));
+        card4.setLayout(new java.awt.GridLayout(0, 1));
         CLpanel.add(card4, "card5");
 
-        card5.setBackground(new java.awt.Color(0, 204, 51));
-
-        javax.swing.GroupLayout card5Layout = new javax.swing.GroupLayout(card5);
-        card5.setLayout(card5Layout);
-        card5Layout.setHorizontalGroup(
-            card5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 175, Short.MAX_VALUE)
-        );
-        card5Layout.setVerticalGroup(
-            card5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 586, Short.MAX_VALUE)
-        );
-
+        card5.setBackground(new java.awt.Color(73, 73, 73));
+        card5.setLayout(new java.awt.GridLayout(0, 1));
         CLpanel.add(card5, "card6");
+
+        ShirtPanel.setPreferredSize(new java.awt.Dimension(170, 600));
+
+        card1.setBackground(new java.awt.Color(73, 73, 73));
+        card1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        card1.setLayout(new java.awt.GridLayout(10, 1));
+        ShirtPanel.setViewportView(card1);
+
+        CLpanel.add(ShirtPanel, "card7");
+
+        card2.setBackground(new java.awt.Color(73, 73, 73));
+        card2.setLayout(new java.awt.GridLayout(0, 1));
+        PantPanel.setViewportView(card2);
+
+        CLpanel.add(PantPanel, "card7");
+
+        add(CLpanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 0, 170, 600));
 
         jPanel2.setLayout(new javax.swing.OverlayLayout(jPanel2));
 
-        Top.setText("jLabel1");
         Top.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Top.setMaximumSize(new java.awt.Dimension(400, 534));
         Top.setMinimumSize(new java.awt.Dimension(400, 534));
         Top.setPreferredSize(new java.awt.Dimension(400, 534));
         jPanel2.add(Top);
 
-        Down.setText("jLabel2");
         Down.setMaximumSize(new java.awt.Dimension(400, 534));
         Down.setName(""); // NOI18N
         jPanel2.add(Down);
 
-        Below.setText("jLabel4");
         Below.setMaximumSize(new java.awt.Dimension(400, 543));
         jPanel2.add(Below);
 
-        Background.setText("jLabel3");
         Background.setMaximumSize(new java.awt.Dimension(400, 534));
         Background.setPreferredSize(new java.awt.Dimension(400, 534));
         jPanel2.add(Background);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(138, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(CLpanel, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(CLpanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
-        );
-
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 30, 400, 534));
         jPanel2.getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         // TODO add your handling code here:
-        cardLayout.show(CLpanel, "card5");
-    }//GEN-LAST:event_jButton4ActionPerformed
+        cardLayout.show(CLpanel, "ShirtPanel");
+    }//GEN-LAST:event_button1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
         // TODO add your handling code here:
-        cardLayout.show(CLpanel, "card4");
-    }//GEN-LAST:event_jButton3ActionPerformed
+        //cardLayout.show(CLpanel, "card3");
+    }//GEN-LAST:event_button2ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
         // TODO add your handling code here:
-        cardLayout.show(CLpanel, "card3");
+        //cardLayout.show(CLpanel, "card4");
+    }//GEN-LAST:event_button3ActionPerformed
 
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void button4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button4ActionPerformed
         // TODO add your handling code here:
-        cardLayout.show(CLpanel, "card2");
-    }//GEN-LAST:event_jButton1ActionPerformed
+        //cardLayout.show(CLpanel, "card5");
+    }//GEN-LAST:event_button4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -355,16 +356,18 @@ public class HomeFrame extends javax.swing.JPanel {
     private javax.swing.JLabel Below;
     private javax.swing.JPanel CLpanel;
     private javax.swing.JLabel Down;
+    private javax.swing.JScrollPane PantPanel;
+    private javax.swing.JScrollPane ShirtPanel;
     private javax.swing.JLabel Top;
+    private View.Swing.Button button1;
+    private View.Swing.Button button2;
+    private View.Swing.Button button3;
+    private View.Swing.Button button4;
     private javax.swing.JPanel card1;
     private javax.swing.JPanel card2;
     private javax.swing.JPanel card3;
     private javax.swing.JPanel card4;
     private javax.swing.JPanel card5;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
