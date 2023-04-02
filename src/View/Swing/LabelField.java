@@ -18,7 +18,6 @@ public class LabelField extends JLabel {
         setBorder(new EmptyBorder(10, 10, 10, 10));
         setBackground(new Color(0, 0, 0, 0));
         setHorizontalAlignment(JTextField.CENTER);
-        setBackground(LoginAndRegister.mainColor);
     }
 
     @Override

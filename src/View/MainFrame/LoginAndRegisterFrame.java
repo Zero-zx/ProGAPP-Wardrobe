@@ -39,11 +39,12 @@ public class LoginAndRegisterFrame extends javax.swing.JFrame {
 
             @Override
             public void toCustomFrame(int n) {
+                
+                main.removeAll();
+                main.add(home);
                 if(n == 1){
                     home.setGender(1);
                 }else home.setGender(2);
-                main.removeAll();
-                main.add(home);
                 main.revalidate();
                 main.repaint();
             }

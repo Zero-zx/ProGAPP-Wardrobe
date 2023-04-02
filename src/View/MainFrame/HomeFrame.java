@@ -4,6 +4,8 @@
  */
 package View.MainFrame;
 
+import Controller.LabelToImage;
+import Model.Dress;
 import Model.Outfit;
 import Model.Pant;
 import Model.Shirt;
@@ -19,12 +21,17 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 /**
@@ -34,10 +41,12 @@ import javax.swing.JScrollPane;
 public class HomeFrame extends javax.swing.JPanel {
 
     private ArrayList<Outfit> outfit;
+    private ArrayList<JLabel> labels;
     private Outfit oft;
     CardLayout cardLayout;
     private EventLogin event;
-    private String gender = "Female.png";
+    private String gender = "Male.png";
+    private LabelToImage saveImg;
     
     public HomeFrame() {
         initComponents();
@@ -49,6 +58,8 @@ public class HomeFrame extends javax.swing.JPanel {
     }
     
     private void init(){
+        labels = new ArrayList<JLabel>();
+        saveImg = new LabelToImage();
         cardLayout = (CardLayout)(CLpanel.getLayout());
         outfit = new ArrayList<Outfit>();
         oft = new Outfit();
@@ -57,13 +68,8 @@ public class HomeFrame extends javax.swing.JPanel {
         addDressList(outfit);
         addShoeList(outfit);
         generateList();
-        BufferedImage image = null;
-        try {
-            image = ImageIO.read(new File("src/Assets/Model/" + gender));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Background.setIcon(new ImageIcon(image));
+        
+
         //createScrollPane();
 
     }
@@ -84,10 +90,16 @@ public class HomeFrame extends javax.swing.JPanel {
         btn.addActionListener((ActionEvent e) -> {
              if("Shirt".equals(of.getTag())){
                 Top.setIcon(img);
+                Dress.setIcon(null);
              }else if("Pant".equals(of.getTag())){
                 Down.setIcon(img);
+                Dress.setIcon(null);
              }else if("Shoe".equals(of.getTag())){
                 Below.setIcon(img);
+             }else if("Dress".equals(of.getTag())){
+                 Dress.setIcon(img);
+                 Top.setIcon(null);
+                 Down.setIcon(null);
              }
         });
         pnl.add(btn);
@@ -131,10 +143,10 @@ public class HomeFrame extends javax.swing.JPanel {
         }
     }
     private void addDressList(ArrayList<Outfit> list){
-        Shirt shirt = new Shirt(oft.DressPath + "Dress_1.png", "Dress");
-        list.add(shirt);
-        for(Outfit it : list){
-            System.out.println(it.getFilePath());
+        Dress dress;
+        for(int i = 1; i <= 2; i++){
+            dress = new Dress(oft.DressPath + "Dress_" + String.valueOf(i) + ".png", "Dress");
+            list.add(dress);
         }
     }
     
@@ -199,20 +211,22 @@ public class HomeFrame extends javax.swing.JPanel {
         card2 = new javax.swing.JPanel();
         card3 = new javax.swing.JPanel();
         card4 = new javax.swing.JPanel();
-        card5 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         Top = new javax.swing.JLabel();
+        Face = new javax.swing.JLabel();
+        Dress = new javax.swing.JLabel();
         Down = new javax.swing.JLabel();
         Below = new javax.swing.JLabel();
         Background = new javax.swing.JLabel();
-        button5 = new View.Swing.Button();
+        Back = new View.Swing.Button();
+        AddFace = new View.Swing.Button();
+        button8 = new View.Swing.Button();
 
         setBackground(new java.awt.Color(246, 207, 104));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMaximumSize(new java.awt.Dimension(1039, 591));
         setMinimumSize(new java.awt.Dimension(1039, 591));
         setName(""); // NOI18N
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -279,8 +293,6 @@ public class HomeFrame extends javax.swing.JPanel {
                 .addGap(85, 85, 85))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, 150, 600));
-
         CLpanel.setLayout(new java.awt.CardLayout());
 
         card1.setBackground(new java.awt.Color(73, 73, 73));
@@ -298,45 +310,112 @@ public class HomeFrame extends javax.swing.JPanel {
 
         card4.setBackground(new java.awt.Color(73, 73, 73));
         card4.setLayout(new java.awt.GridLayout(5, 1));
-        CLpanel.add(card4, "car4");
+        CLpanel.add(card4, "card4");
 
-        card5.setBackground(new java.awt.Color(73, 73, 73));
-        card5.setLayout(new java.awt.GridLayout(5, 1));
-        CLpanel.add(card5, "card6");
-
-        add(CLpanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 0, 170, 600));
-
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new javax.swing.OverlayLayout(jPanel2));
 
+        Top.setForeground(new java.awt.Color(255, 255, 255));
         Top.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Top.setMaximumSize(new java.awt.Dimension(400, 534));
         Top.setMinimumSize(new java.awt.Dimension(400, 534));
         Top.setPreferredSize(new java.awt.Dimension(400, 534));
         jPanel2.add(Top);
 
+        Face.setForeground(new java.awt.Color(255, 255, 255));
+        Face.setMaximumSize(new java.awt.Dimension(400, 534));
+        Face.setMinimumSize(new java.awt.Dimension(400, 534));
+        Face.setPreferredSize(new java.awt.Dimension(400, 534));
+        jPanel2.add(Face);
+
+        Dress.setForeground(new java.awt.Color(255, 255, 255));
+        Dress.setMaximumSize(new java.awt.Dimension(400, 534));
+        Dress.setMinimumSize(new java.awt.Dimension(400, 534));
+        Dress.setPreferredSize(new java.awt.Dimension(400, 534));
+        jPanel2.add(Dress);
+
+        Down.setForeground(new java.awt.Color(255, 255, 255));
         Down.setMaximumSize(new java.awt.Dimension(400, 534));
         Down.setName(""); // NOI18N
         jPanel2.add(Down);
 
+        Below.setForeground(new java.awt.Color(255, 255, 255));
         Below.setMaximumSize(new java.awt.Dimension(400, 543));
+        Below.setMinimumSize(new java.awt.Dimension(400, 534));
+        Below.setPreferredSize(new java.awt.Dimension(400, 534));
         jPanel2.add(Below);
 
+        Background.setForeground(new java.awt.Color(255, 255, 255));
         Background.setMaximumSize(new java.awt.Dimension(400, 534));
+        Background.setMinimumSize(new java.awt.Dimension(400, 534));
         Background.setPreferredSize(new java.awt.Dimension(400, 534));
         jPanel2.add(Background);
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 30, 400, 534));
-        jPanel2.getAccessibleContext().setAccessibleName("");
-
-        button5.setBackground(new java.awt.Color(55, 55, 55));
-        button5.setForeground(new java.awt.Color(51, 102, 255));
-        button5.setText("Back");
-        button5.addActionListener(new java.awt.event.ActionListener() {
+        Back.setBackground(new java.awt.Color(55, 55, 55));
+        Back.setForeground(new java.awt.Color(0, 153, 255));
+        Back.setText("Back");
+        Back.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        Back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button5ActionPerformed(evt);
+                BackActionPerformed(evt);
             }
         });
-        add(button5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 90, -1));
+
+        AddFace.setBackground(new java.awt.Color(55, 55, 55));
+        AddFace.setForeground(new java.awt.Color(0, 153, 255));
+        AddFace.setText("Add Face");
+        AddFace.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        AddFace.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddFaceActionPerformed(evt);
+            }
+        });
+
+        button8.setBackground(new java.awt.Color(55, 55, 55));
+        button8.setForeground(new java.awt.Color(0, 153, 255));
+        button8.setText("Save Image");
+        button8.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        button8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button8ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Back, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(95, 95, 95)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(CLpanel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(AddFace, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(button8, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(Back, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(AddFace, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(button8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(CLpanel, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        jPanel2.getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
@@ -359,28 +438,77 @@ public class HomeFrame extends javax.swing.JPanel {
         cardLayout.show(CLpanel, "card4");
     }//GEN-LAST:event_button4ActionPerformed
 
-    private void button5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button5ActionPerformed
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
         event.toChosingFrame();
-    }//GEN-LAST:event_button5ActionPerformed
+    }//GEN-LAST:event_BackActionPerformed
+
+    private void AddFaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddFaceActionPerformed
+        // TODO add your handling code here:
+        JFileChooser browseImageFile = new JFileChooser();
+        //Filter image extendsions
+        FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGES", "png", "jpg", "jpeg");
+        browseImageFile.addChoosableFileFilter(fnef);
+        int showOpenDialogue = browseImageFile.showOpenDialog(null);
+        
+        if(showOpenDialogue == JFileChooser.APPROVE_OPTION){
+            File selectedImageFile = browseImageFile.getSelectedFile();
+            String selectedImagePath = selectedImageFile.getAbsolutePath();
+            JOptionPane.showMessageDialog(null, selectedImageFile);
+            //Display on label
+            ImageIcon i = new ImageIcon(selectedImagePath);
+            //Resize image to fit label
+            Image image = i.getImage().getScaledInstance(400, 534, Image.SCALE_SMOOTH);
+            BufferedImage img = null;
+            try {
+                img = ImageIO.read(new File("src/Assets/Model/" + "After_" + gender));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Background.setIcon(new ImageIcon(img));
+            Face.setIcon(new ImageIcon(image));
+            
+        }
+    }//GEN-LAST:event_AddFaceActionPerformed
+
+    private void button8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button8ActionPerformed
+        try {
+            labels.add(Background);
+            labels.add(Below);
+            labels.add(Down);
+            labels.add(Dress);
+            labels.add(Top);
+            labels.add(Face);
+            // TODO add your        handling code here:
+            saveImg.saveImage(labels);
+//        for(JLabel it : labels){
+//            System.out.println(it.getHeight());
+//        }
+        } catch (IOException ex) {
+            Logger.getLogger(HomeFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_button8ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private View.Swing.Button AddFace;
+    private View.Swing.Button Back;
     private javax.swing.JLabel Background;
     private javax.swing.JLabel Below;
     private javax.swing.JPanel CLpanel;
     private javax.swing.JLabel Down;
+    private javax.swing.JLabel Dress;
+    private javax.swing.JLabel Face;
     private javax.swing.JLabel Top;
     private View.Swing.Button button1;
     private View.Swing.Button button2;
     private View.Swing.Button button3;
     private View.Swing.Button button4;
-    private View.Swing.Button button5;
+    private View.Swing.Button button8;
     private javax.swing.JPanel card1;
     private javax.swing.JPanel card2;
     private javax.swing.JPanel card3;
     private javax.swing.JPanel card4;
-    private javax.swing.JPanel card5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
@@ -388,5 +516,14 @@ public class HomeFrame extends javax.swing.JPanel {
     void setGender(int i) {
         if(i == 1) this.gender = "Male.png";
         else this.gender = "Female.png";
+        BufferedImage image = null;
+        try {
+            image = ImageIO.read(new File("src/Assets/Model/" + gender));
+            System.out.println(gender);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Background.setIcon(new ImageIcon(image));
+        
     }
 }

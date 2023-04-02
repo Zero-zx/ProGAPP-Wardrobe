@@ -174,18 +174,16 @@ public class ChosingFrame extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        textField1 = new View.Swing.TextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         button1 = new View.Swing.Button();
+        button2 = new View.Swing.Button();
 
         setBackground(new java.awt.Color(246, 207, 104));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMaximumSize(new java.awt.Dimension(1039, 586));
         setMinimumSize(new java.awt.Dimension(1039, 586));
         setName(""); // NOI18N
-
-        textField1.setText("textField1");
 
         jButton1.setText("jButton1");
         jButton1.setMaximumSize(new java.awt.Dimension(300, 400));
@@ -205,7 +203,17 @@ public class ChosingFrame extends javax.swing.JPanel {
             }
         });
 
-        button1.setText("button1");
+        button1.setText("Logout");
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
+
+        button2.setBackground(new java.awt.Color(66, 164, 253));
+        button2.setForeground(new java.awt.Color(255, 255, 255));
+        button2.setText("Are you a boy or a girl?");
+        button2.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -214,23 +222,23 @@ public class ChosingFrame extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(171, 171, 171)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(100, 100, 100)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(168, 168, 168))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addGap(34, 34, 34)
+                .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -250,11 +258,16 @@ public class ChosingFrame extends javax.swing.JPanel {
         event.toCustomFrame(2);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        // TODO add your handling code here:
+        event.logOut();
+    }//GEN-LAST:event_button1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private View.Swing.Button button1;
+    private View.Swing.Button button2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private View.Swing.TextField textField1;
     // End of variables declaration//GEN-END:variables
 }
