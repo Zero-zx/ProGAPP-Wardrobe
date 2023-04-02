@@ -14,15 +14,17 @@ public class LoginAndRegisterFrame extends javax.swing.JFrame {
 
     private MainFrame mainFrame;
     private HomeFrame home;
+    private ChosingFrame chosingFrame;
     
     public LoginAndRegisterFrame() {
         initComponents();
         home = new HomeFrame();
+        chosingFrame = new ChosingFrame();
         EventLogin event = new EventLogin(){
             @Override
             public void loginDone(){
                 main.removeAll();
-                main.add(home);
+                main.add(chosingFrame);
                 main.revalidate();
                 main.repaint();
             }
@@ -34,9 +36,29 @@ public class LoginAndRegisterFrame extends javax.swing.JFrame {
                 main.revalidate();
                 main.repaint();
             }
+
+            @Override
+            public void toCustomFrame(int n) {
+                if(n == 1){
+                    home.setGender(1);
+                }else home.setGender(2);
+                main.removeAll();
+                main.add(home);
+                main.revalidate();
+                main.repaint();
+            }
+
+            @Override
+            public void toChosingFrame() {
+                main.removeAll();
+                main.add(chosingFrame);
+                main.revalidate();
+                main.repaint();
+            }
         };
         loginAndRegister1.setEventLogin(event);
-     
+        chosingFrame.setEventLogin(event);
+        home.setEventLogin(event);
     }
 
     /**
@@ -64,7 +86,7 @@ public class LoginAndRegisterFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
+            .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
         );
 
         pack();

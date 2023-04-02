@@ -8,7 +8,7 @@ import Model.Outfit;
 import Model.Pant;
 import Model.Shirt;
 import Model.Shoe;
-import java.awt.BorderLayout;
+import View.Swing.EventLogin;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -36,10 +36,16 @@ public class HomeFrame extends javax.swing.JPanel {
     private ArrayList<Outfit> outfit;
     private Outfit oft;
     CardLayout cardLayout;
+    private EventLogin event;
+    private String gender = "Female.png";
+    
     public HomeFrame() {
-        System.out.println("helo");
         initComponents();
         init();
+    }
+    
+    public void setEventLogin(EventLogin event){
+        this.event = event;
     }
     
     private void init(){
@@ -53,7 +59,7 @@ public class HomeFrame extends javax.swing.JPanel {
         generateList();
         BufferedImage image = null;
         try {
-            image = ImageIO.read(new File("src/Assets/Model/Male.png"));
+            image = ImageIO.read(new File("src/Assets/Model/" + gender));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -189,23 +195,22 @@ public class HomeFrame extends javax.swing.JPanel {
         button3 = new View.Swing.Button();
         button4 = new View.Swing.Button();
         CLpanel = new javax.swing.JPanel();
+        card1 = new javax.swing.JPanel();
+        card2 = new javax.swing.JPanel();
         card3 = new javax.swing.JPanel();
         card4 = new javax.swing.JPanel();
         card5 = new javax.swing.JPanel();
-        ShirtPanel = new javax.swing.JScrollPane();
-        card1 = new javax.swing.JPanel();
-        PantPanel = new javax.swing.JScrollPane();
-        card2 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         Top = new javax.swing.JLabel();
         Down = new javax.swing.JLabel();
         Below = new javax.swing.JLabel();
         Background = new javax.swing.JLabel();
+        button5 = new View.Swing.Button();
 
         setBackground(new java.awt.Color(246, 207, 104));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setMaximumSize(new java.awt.Dimension(930, 586));
-        setMinimumSize(new java.awt.Dimension(930, 586));
+        setMaximumSize(new java.awt.Dimension(1039, 591));
+        setMinimumSize(new java.awt.Dimension(1039, 591));
         setName(""); // NOI18N
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -278,32 +283,26 @@ public class HomeFrame extends javax.swing.JPanel {
 
         CLpanel.setLayout(new java.awt.CardLayout());
 
-        card3.setBackground(new java.awt.Color(73, 73, 73));
-        card3.setLayout(new java.awt.GridLayout(0, 1));
-        CLpanel.add(card3, "card4");
-
-        card4.setBackground(new java.awt.Color(73, 73, 73));
-        card4.setLayout(new java.awt.GridLayout(0, 1));
-        CLpanel.add(card4, "card5");
-
-        card5.setBackground(new java.awt.Color(73, 73, 73));
-        card5.setLayout(new java.awt.GridLayout(0, 1));
-        CLpanel.add(card5, "card6");
-
-        ShirtPanel.setPreferredSize(new java.awt.Dimension(170, 600));
-
         card1.setBackground(new java.awt.Color(73, 73, 73));
         card1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        card1.setLayout(new java.awt.GridLayout(10, 1));
-        ShirtPanel.setViewportView(card1);
-
-        CLpanel.add(ShirtPanel, "card7");
+        card1.setLayout(new java.awt.GridLayout(5, 1));
+        CLpanel.add(card1, "card1");
 
         card2.setBackground(new java.awt.Color(73, 73, 73));
-        card2.setLayout(new java.awt.GridLayout(0, 1));
-        PantPanel.setViewportView(card2);
+        card2.setLayout(new java.awt.GridLayout(5, 1));
+        CLpanel.add(card2, "card2");
 
-        CLpanel.add(PantPanel, "card7");
+        card3.setBackground(new java.awt.Color(73, 73, 73));
+        card3.setLayout(new java.awt.GridLayout(5, 1));
+        CLpanel.add(card3, "card3");
+
+        card4.setBackground(new java.awt.Color(73, 73, 73));
+        card4.setLayout(new java.awt.GridLayout(5, 1));
+        CLpanel.add(card4, "car4");
+
+        card5.setBackground(new java.awt.Color(73, 73, 73));
+        card5.setLayout(new java.awt.GridLayout(5, 1));
+        CLpanel.add(card5, "card6");
 
         add(CLpanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 0, 170, 600));
 
@@ -326,29 +325,44 @@ public class HomeFrame extends javax.swing.JPanel {
         Background.setPreferredSize(new java.awt.Dimension(400, 534));
         jPanel2.add(Background);
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 30, 400, 534));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 30, 400, 534));
         jPanel2.getAccessibleContext().setAccessibleName("");
+
+        button5.setBackground(new java.awt.Color(55, 55, 55));
+        button5.setForeground(new java.awt.Color(51, 102, 255));
+        button5.setText("Back");
+        button5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button5ActionPerformed(evt);
+            }
+        });
+        add(button5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 90, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         // TODO add your handling code here:
-        cardLayout.show(CLpanel, "ShirtPanel");
+        cardLayout.show(CLpanel, "card1");
     }//GEN-LAST:event_button1ActionPerformed
 
     private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
         // TODO add your handling code here:
-        //cardLayout.show(CLpanel, "card3");
+        cardLayout.show(CLpanel, "card2");
     }//GEN-LAST:event_button2ActionPerformed
 
     private void button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
         // TODO add your handling code here:
-        //cardLayout.show(CLpanel, "card4");
+        cardLayout.show(CLpanel, "card3");
     }//GEN-LAST:event_button3ActionPerformed
 
     private void button4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button4ActionPerformed
         // TODO add your handling code here:
-        //cardLayout.show(CLpanel, "card5");
+        cardLayout.show(CLpanel, "card4");
     }//GEN-LAST:event_button4ActionPerformed
+
+    private void button5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button5ActionPerformed
+        // TODO add your handling code here:
+        event.toChosingFrame();
+    }//GEN-LAST:event_button5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -356,13 +370,12 @@ public class HomeFrame extends javax.swing.JPanel {
     private javax.swing.JLabel Below;
     private javax.swing.JPanel CLpanel;
     private javax.swing.JLabel Down;
-    private javax.swing.JScrollPane PantPanel;
-    private javax.swing.JScrollPane ShirtPanel;
     private javax.swing.JLabel Top;
     private View.Swing.Button button1;
     private View.Swing.Button button2;
     private View.Swing.Button button3;
     private View.Swing.Button button4;
+    private View.Swing.Button button5;
     private javax.swing.JPanel card1;
     private javax.swing.JPanel card2;
     private javax.swing.JPanel card3;
@@ -371,4 +384,9 @@ public class HomeFrame extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
+
+    void setGender(int i) {
+        if(i == 1) this.gender = "Male.png";
+        else this.gender = "Female.png";
+    }
 }

@@ -12,4 +12,8 @@ public interface EventLogin {
     public void loginDone();
     
     public void logOut();
+    
+    public void toCustomFrame(int n);
+    
+    public void toChosingFrame();
 }
