@@ -31,6 +31,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 
@@ -45,12 +46,11 @@ public class HomeFrame extends javax.swing.JPanel {
     private Outfit oft;
     CardLayout cardLayout;
     private EventLogin event;
-    private String gender = "Male.png";
+    private String gender = "Male";
     private LabelToImage saveImg;
     
     public HomeFrame() {
         initComponents();
-        init();
     }
     
     public void setEventLogin(EventLogin event){
@@ -87,6 +87,11 @@ public class HomeFrame extends javax.swing.JPanel {
             e.printStackTrace();
         }
         ImageIcon img = new ImageIcon(image);
+        Image tmp = img.getImage().getScaledInstance(90, 100, Image.SCALE_SMOOTH);
+        btn.setIcon(new ImageIcon(tmp));
+        btn.setVerticalTextPosition(SwingConstants.TOP);
+        btn.setHorizontalTextPosition(SwingConstants.CENTER);
+        btn.setText("  ");
         btn.addActionListener((ActionEvent e) -> {
              if("Shirt".equals(of.getTag())){
                 Top.setIcon(img);
@@ -129,8 +134,8 @@ public class HomeFrame extends javax.swing.JPanel {
     
     private void addShirtList(ArrayList<Outfit> list){
         Shirt shirt;
-        for(int i = 1; i <= 3; i++){
-            shirt = new Shirt(oft.ShirtPath + "Shirt_" + String.valueOf(i) + ".png", "Shirt");
+        for(int i = 1; i <= 4; i++){
+            shirt = new Shirt(oft.ShirtPath + gender + "Shirt_" + String.valueOf(i) + ".png", "Shirt");
             list.add(shirt);
         }
 
@@ -440,13 +445,13 @@ public class HomeFrame extends javax.swing.JPanel {
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
+        removeAll();
+        initComponents();
         event.toChosingFrame();
     }//GEN-LAST:event_BackActionPerformed
 
     private void AddFaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddFaceActionPerformed
-        // TODO add your handling code here:
         JFileChooser browseImageFile = new JFileChooser();
-        //Filter image extendsions
         FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGES", "png", "jpg", "jpeg");
         browseImageFile.addChoosableFileFilter(fnef);
         int showOpenDialogue = browseImageFile.showOpenDialog(null);
@@ -455,13 +460,11 @@ public class HomeFrame extends javax.swing.JPanel {
             File selectedImageFile = browseImageFile.getSelectedFile();
             String selectedImagePath = selectedImageFile.getAbsolutePath();
             JOptionPane.showMessageDialog(null, selectedImageFile);
-            //Display on label
             ImageIcon i = new ImageIcon(selectedImagePath);
-            //Resize image to fit label
             Image image = i.getImage().getScaledInstance(400, 534, Image.SCALE_SMOOTH);
             BufferedImage img = null;
             try {
-                img = ImageIO.read(new File("src/Assets/Model/" + "After_" + gender));
+                img = ImageIO.read(new File("src/Assets/Model/" + "After_" + gender + ".png"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -514,16 +517,16 @@ public class HomeFrame extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     void setGender(int i) {
-        if(i == 1) this.gender = "Male.png";
-        else this.gender = "Female.png";
+        if(i == 1) this.gender = "Male";
+        else this.gender = "Female";
         BufferedImage image = null;
         try {
-            image = ImageIO.read(new File("src/Assets/Model/" + gender));
+            image = ImageIO.read(new File("src/Assets/Model/" + gender +".png"));
             System.out.println(gender);
         } catch (IOException e) {
             e.printStackTrace();
         }
         Background.setIcon(new ImageIcon(image));
-        
+        init();
     }
 }

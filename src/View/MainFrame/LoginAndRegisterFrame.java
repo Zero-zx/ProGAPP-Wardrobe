@@ -39,7 +39,6 @@ public class LoginAndRegisterFrame extends javax.swing.JFrame {
 
             @Override
             public void toCustomFrame(int n) {
-                
                 main.removeAll();
                 main.add(home);
                 if(n == 1){
