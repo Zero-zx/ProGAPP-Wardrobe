@@ -13,4 +13,8 @@ public class Pant extends Outfit{
     public Pant(String filePath, String tag) {
         super(filePath, tag);
     }
+    
+    public void setDefaultModelPath(String filePath) {
+        super.setDefaultModelPath(filePath);
+    }
 }

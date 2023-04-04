@@ -16,8 +16,10 @@ public class Shirt extends Outfit{
         super(filePath, tag);
     }
 
-    
-    
-    
+    @Override
+    public void setDefaultModelPath(String filePath) {
+        super.setDefaultModelPath(filePath);
+    }
+ 
     
 }

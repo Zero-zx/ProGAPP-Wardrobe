@@ -13,6 +13,7 @@ import Model.Shoe;
 import View.Swing.EventLogin;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -81,31 +82,45 @@ public class HomeFrame extends javax.swing.JPanel {
         pnl.setPreferredSize(new Dimension(90, 100));
         btn.setPreferredSize(new Dimension(90,100));
         BufferedImage image = null;
+        BufferedImage icon = null;
         try {
-            image = ImageIO.read(new File(of.getFilePath()));
+            icon = ImageIO.read(getClass().getResource(of.getDefaultModelPath()));
+            //icon = ImageIO.read(getClass().getResource("/Assets/Shirt/Shirt_1.png"));
+            image = ImageIO.read(getClass().getResource(of.getFilePath()));
+            //image = ImageIO.read(getClass().getResource("/Assets/Shirt/Shirt_1.png"));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
         ImageIcon img = new ImageIcon(image);
-        Image tmp = img.getImage().getScaledInstance(90, 100, Image.SCALE_SMOOTH);
+        Image tmp = icon.getScaledInstance(90, 100, Image.SCALE_SMOOTH);
         btn.setIcon(new ImageIcon(tmp));
         btn.setVerticalTextPosition(SwingConstants.TOP);
         btn.setHorizontalTextPosition(SwingConstants.CENTER);
-        btn.setText("  ");
+        btn.setText("");
+       
+        
         btn.addActionListener((ActionEvent e) -> {
-             if("Shirt".equals(of.getTag())){
-                Top.setIcon(img);
-                Dress.setIcon(null);
-             }else if("Pant".equals(of.getTag())){
-                Down.setIcon(img);
-                Dress.setIcon(null);
-             }else if("Shoe".equals(of.getTag())){
-                Below.setIcon(img);
-             }else if("Dress".equals(of.getTag())){
-                 Dress.setIcon(img);
-                 Top.setIcon(null);
-                 Down.setIcon(null);
-             }
+             if(null != of.getTag())switch (of.getTag()) {
+                case "Shirt":
+                    Top.setIcon(img);
+                    Dress.setIcon(null);
+                    break;
+                case "Pant":
+                    Down.setIcon(img);
+                    Dress.setIcon(null);
+                    break;
+                case "Shoe":
+                    Below.setIcon(img);
+                    break;
+                case "Dress":
+                    Dress.setIcon(img);
+                    Top.setIcon(null);
+                    Down.setIcon(null);
+                    break;
+                default:
+                    break;
+            }
         });
         pnl.add(btn);
         return pnl;
@@ -136,14 +151,16 @@ public class HomeFrame extends javax.swing.JPanel {
         Shirt shirt;
         for(int i = 1; i <= 4; i++){
             shirt = new Shirt(oft.ShirtPath + gender + "Shirt_" + String.valueOf(i) + ".png", "Shirt");
+            shirt.setDefaultModelPath(oft.ShirtPath + "Shirt_" + String.valueOf(i) + ".png");
             list.add(shirt);
         }
 
     }
     private void addPantList(ArrayList<Outfit> list){
         Pant pant;
-        for(int i = 1; i <= 2; i++){
-            pant = new Pant(oft.PantPath + "Pant_" + String.valueOf(i) + ".png", "Pant");
+        for(int i = 1; i <= 4; i++){
+            pant = new Pant(oft.PantPath + gender + "Pant_" + String.valueOf(i) + ".png", "Pant");
+            pant.setDefaultModelPath(oft.PantPath + "Pant_" + String.valueOf(i) + ".png");
             list.add(pant);
         }
     }
@@ -151,6 +168,7 @@ public class HomeFrame extends javax.swing.JPanel {
         Dress dress;
         for(int i = 1; i <= 2; i++){
             dress = new Dress(oft.DressPath + "Dress_" + String.valueOf(i) + ".png", "Dress");
+            dress.setDefaultModelPath(oft.DressPath + "Dress_" + String.valueOf(i) + ".png");
             list.add(dress);
         }
     }
@@ -158,7 +176,8 @@ public class HomeFrame extends javax.swing.JPanel {
     private void addShoeList(ArrayList<Outfit> list){
         Shoe shoe;
         for(int i = 1; i <= 1; i++){
-            shoe = new Shoe(oft.ShoePath + "Shoe_" + String.valueOf(i) + ".png", "Shoe");
+            shoe = new Shoe(oft.ShoePath + gender + "Shoe_" + String.valueOf(i) + ".png", "Shoe");
+            shoe.setDefaultModelPath(oft.ShoePath + "Shoe_" + String.valueOf(i) + ".png");
             list.add(shoe);
         }
     }
@@ -464,7 +483,7 @@ public class HomeFrame extends javax.swing.JPanel {
             Image image = i.getImage().getScaledInstance(400, 534, Image.SCALE_SMOOTH);
             BufferedImage img = null;
             try {
-                img = ImageIO.read(new File("src/Assets/Model/" + "After_" + gender + ".png"));
+                img = ImageIO.read(getClass().getResource("/Assets/Model/" + "After_" + gender + ".png"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -486,6 +505,7 @@ public class HomeFrame extends javax.swing.JPanel {
             saveImg.saveImage(labels);
 //        for(JLabel it : labels){
 //            System.out.println(it.getHeight());
+            JOptionPane.showMessageDialog(null, "Image Saved", "Message", JOptionPane.INFORMATION_MESSAGE);
 //        }
         } catch (IOException ex) {
             Logger.getLogger(HomeFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -521,7 +541,7 @@ public class HomeFrame extends javax.swing.JPanel {
         else this.gender = "Female";
         BufferedImage image = null;
         try {
-            image = ImageIO.read(new File("src/Assets/Model/" + gender +".png"));
+            image = ImageIO.read(getClass().getResource("/Assets/Model/" + gender +".png"));
             System.out.println(gender);
         } catch (IOException e) {
             e.printStackTrace();

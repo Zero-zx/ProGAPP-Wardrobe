@@ -13,4 +13,9 @@ public class Dress extends Outfit{
     public Dress(String filePath, String tag) {
         super(filePath, tag);
     }
+    
+    @Override
+    public void setDefaultModelPath(String filePath) {
+        super.setDefaultModelPath(filePath);
+    }
 }

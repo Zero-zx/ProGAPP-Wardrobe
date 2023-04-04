@@ -5,11 +5,11 @@
 package Controller;
 
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JLabel;
@@ -37,10 +37,9 @@ public class LabelToImage{
         }
         g2d.dispose();
 
-        // lưu ảnh PNG tổng thể
-        File outputFile = new File("labels.png");
-        ImageIO.write(image, "png", outputFile);
-        
+        File outputFile = new File("SavedImage.jpeg");
+        ImageIO.write(image, "jpeg", outputFile);
+
     }
     
 }

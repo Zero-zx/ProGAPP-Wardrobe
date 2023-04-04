@@ -18,6 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import static java.net.URL.of;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -39,7 +40,6 @@ public class ChosingFrame extends javax.swing.JPanel {
     private EventLogin event;
     
     public ChosingFrame() {
-        System.out.println("helo");
         initComponents();
         init();
     }
@@ -56,16 +56,18 @@ public class ChosingFrame extends javax.swing.JPanel {
         addDressList(outfit);
         addShoeList(outfit);
         generateList();
-        BufferedImage image = null;
+        BufferedImage male = null;
+        BufferedImage female = null;
         try {
-            image = ImageIO.read(new File("src/Assets/Model/Male.png"));
+            male = ImageIO.read(getClass().getResource("/Assets/Model/Male.png"));
+            female = ImageIO.read(getClass().getResource("/Assets/Model/Female.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        Background.setIcon(new ImageIcon(image));
-        createButtonIcon("src/Assets/Model/Male.png", jButton1);
-        createButtonIcon("src/Assets/Model/Female.png", jButton2);
-
+        Image tmp = male.getScaledInstance(300, 400, Image.SCALE_SMOOTH);
+        Image sav = female.getScaledInstance(300, 400, Image.SCALE_SMOOTH);
+        jButton1.setIcon(new ImageIcon(tmp));
+        jButton2.setIcon(new ImageIcon(sav));
         //createScrollPane();
 
     }
@@ -78,20 +80,12 @@ public class ChosingFrame extends javax.swing.JPanel {
         btn.setPreferredSize(new Dimension(90,100));
         BufferedImage image = null;
         try {
-            image = ImageIO.read(new File(of.getFilePath()));
+            image = ImageIO.read(getClass().getResource(of.getFilePath()));
         } catch (IOException e) {
             e.printStackTrace();
         }
         ImageIcon img = new ImageIcon(image);
-        btn.addActionListener((ActionEvent e) -> {
-             if("Shirt".equals(of.getTag())){
-                //Top.setIcon(img);
-             }else if("Pant".equals(of.getTag())){
-                //Down.setIcon(img);
-             }else if("Shoe".equals(of.getTag())){
-                //Below.setIcon(img);
-             }
-        });
+        
         pnl.add(btn);
         return pnl;
     }
@@ -151,6 +145,7 @@ public class ChosingFrame extends javax.swing.JPanel {
         Image image = i.getImage().getScaledInstance(300, 400, Image.SCALE_SMOOTH);
             
         label.setIcon(new ImageIcon(image));
+            System.out.println("HUHU");
         }catch(Exception ex){
             ex.printStackTrace();
         }
