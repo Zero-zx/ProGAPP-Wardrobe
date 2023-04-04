@@ -12,7 +12,6 @@ import View.Swing.EventLogin;
  */
 public class LoginAndRegisterFrame extends javax.swing.JFrame {
 
-    private MainFrame mainFrame;
     private HomeFrame home;
     private ChosingFrame chosingFrame;
     
